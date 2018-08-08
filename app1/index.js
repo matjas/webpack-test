@@ -4,6 +4,10 @@ import servers from './js/customer1/servers';
 
 import './css/customer1/theme1/style.css'
 
+import png from 'images/customer1/theme1/img1_bg.png';
+
+//png;
+
 function component() {
     var element = document.createElement('div');
 

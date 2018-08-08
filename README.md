@@ -1,0 +1,1 @@
+Testing webpack for generating multiple templates

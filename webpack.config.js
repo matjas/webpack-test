@@ -12,7 +12,7 @@ const baseConfig = {
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'app1'),
-        publicPath: '/dist/'
+        //publicPath: '/dist'
     },
     module: {
         rules: [
@@ -38,14 +38,21 @@ const baseConfig = {
                 ],
                 exclude: path.resolve(__dirname, 'app1/index.html')
             },
+            // {
+            //     test: /\.html$/,
+            //     use: ['html-loader']
+            // },
+            //{ test: /\.png$/, use: [ "url-loader?mimetype=image/png" ] },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.png$/,
                 use: [
                     {
                         loader: 'file-loader',
-                        // options: {
-                        //     name: '[path][name].[ext]'
-                        // }
+                        options: {
+                            name: '[path][name].[ext]',
+                            outputPath: '/images',
+                            publicPath: '/images'
+                        }
                     }
                 ]
             },
