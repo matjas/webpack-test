@@ -1,3 +1,10 @@
 p, h1, h2 {
     color:red
 }
+.jsIcon{
+    background-image:url('../../../images/customer1/theme1/img1_bg.png');
+    background-repeat:no-repeat;
+    height:50px;
+    width:50px;
+    display:inline-block;
+}
