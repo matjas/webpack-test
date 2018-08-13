@@ -1,18 +1,23 @@
+"use strict";
+
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const baseConfig = {
+    mode: 'none',
     entry: {
         app:'./app1/index.js'
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist/app1'),
+        publicPath: '/dist/app1/'
     },
     devServer: {
-        contentBase: path.resolve(__dirname, 'app1'),
-        //publicPath: '/dist'
+        contentBase: path.resolve(__dirname, 'dist/app1'),
+        publicPath: '/dist/app1/'
     },
     module: {
         rules: [
@@ -64,8 +69,8 @@ const baseConfig = {
                     options: {
                         limit: 14000, // Convert images < 14kb to base64 strings
                         name: '[path][name].[ext]',
-                        outputPath: '/',
-                        publicPath: '/'
+                        outputPath: '../',
+                        //publicPath: '/'
                     }
                 }]
             },
@@ -80,12 +85,26 @@ const baseConfig = {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: "file-loader",
+                        options: {
+                            name: "[path][name].[ext]",
+                        }
                     },
+                    {
+                        loader: "extract-loader",
+                        options: {
+                            publicPath: "../",
+                        }
+                    },
+                    // {
+                    //     loader: 'style-loader'
+                    // },
                     {
                         loader: 'css-loader',
                         options: {
-                            name: '[path][name].[ext]'
+                            //name: '[path][name].[ext]',
+                            //outputPath: '/dist/app1/',
+                            //publicPath: '/dist/app1/'
                         }
                     }
                 ]
@@ -97,7 +116,8 @@ const baseConfig = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'app1/index.html'
-        })
+        }),
+        new webpack.NamedModulesPlugin()
     ]
 };
 
