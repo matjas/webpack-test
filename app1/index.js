@@ -1,6 +1,6 @@
 import _ from 'lodash';
-//import client from './js/customer1/client';
-//import servers from './js/customer1/servers';
+import client from './js/customer1/client';
+import servers from './js/customer1/servers';
 
 import './css/customer1/theme1/style.css';
 
@@ -20,7 +20,7 @@ function component() {
     return element;
 }
 
-//client.displayMessage;
-//servers.displayMessage;
+client.displayMessage;
+servers.displayMessage;
 
 document.body.appendChild(component());

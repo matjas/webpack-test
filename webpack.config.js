@@ -4,6 +4,16 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+//const StatsGraphPlugin = require('./StatsGraphPlugin');
+
+// const live = process.env.NODE_ENV === "production";
+// const mainCss = ["css-loader", path.join(__dirname, "app1", "css/customer1/theme1/style.css")];
+//
+// if (live) {
+//     mainCss.unshift("file-loader?name=[name].[ext]", "extract-loader");
+// } else {
+//     mainCss.unshift("style-loader");
+// }
 
 const baseConfig = {
     mode: 'none',
@@ -13,7 +23,7 @@ const baseConfig = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist/app1'),
-        publicPath: '/dist/app1/'
+        //publicPath: '/dist/app1/'
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist/app1'),
@@ -34,6 +44,15 @@ const baseConfig = {
             {
                 test: /\.html$/,
                 use: [
+                    // {
+                    //     loader: "file-loader",
+                    //     options: {
+                    //         name: "[name].[ext]"
+                    //     }
+                    // },
+                    // {
+                    //     loader: "extract-loader"
+                    // },
                     {
                         loader: 'html-loader',
                         options: {
@@ -87,7 +106,7 @@ const baseConfig = {
                     {
                         loader: "file-loader",
                         options: {
-                            name: "[path][name].[ext]",
+                            name: "../[path][name].[ext]",
                         }
                     },
                     {
@@ -118,6 +137,7 @@ const baseConfig = {
             template: 'app1/index.html'
         }),
         new webpack.NamedModulesPlugin()
+        //new StatsGraphPlugin()
     ]
 };
 
